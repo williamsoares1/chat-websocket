@@ -1,4 +1,4 @@
-package com.estudos.chat.config;
+package com.estudos.chat.infra.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

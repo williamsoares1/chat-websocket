@@ -1,4 +1,6 @@
-package com.estudos.chat.entity;
+package com.estudos.chat.domain.model;
+
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +14,5 @@ import lombok.Setter;
 public class Message {
     private String user;
     private String message;
+    private LocalDate createdAt;
 }

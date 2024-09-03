@@ -5,7 +5,6 @@ import { UserContext } from '../../context/UserContext';
 
 export default function Chat({client, socket}) {
     const messageRef = useRef()
-    const [message, setMessage] = useState()
     const [messages, setMessages] = useState([])
 
     const {user} = useContext(UserContext)
@@ -25,8 +24,8 @@ export default function Chat({client, socket}) {
         })
     }
 
-    const showMessage = (message) => {
-        setMessages([message, ...messages])
+    const showMessage = (message1) => {
+        setMessages(prevMessages => [message1, ...prevMessages])
     }
 
     const sendMessage = (message) => {
@@ -43,7 +42,7 @@ export default function Chat({client, socket}) {
     }
 
     return (
-        <div>
+        <div style={{backgroundColor: "white"}}>
             <h1>CHAT</h1>
             <input type="text" ref={messageRef} placeholder='Your Message'/>
             <button onClick={() => handleSubmit()}>SEND</button>

@@ -29,7 +29,7 @@ export default function Join({setChatVisibility, setClient, setSocket}) {
         setModalShow(true);
         setModalTitle("Erro ao acessar");
         setModalHeader("Não foi possivel se conectar ao chat");
-        setModalContent("O nickname deve conter no minimo 3 caracteres.");
+        setModalContent("Verifique sua conexão ou tente novamente em alguns minutos.");
         setLoading(false);
     }
 
