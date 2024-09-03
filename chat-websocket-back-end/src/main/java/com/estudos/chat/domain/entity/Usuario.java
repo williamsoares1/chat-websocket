@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.estudos.chat.infra.security.USERROLE;
+import com.estudos.chat.domain.infra.security.USERROLE;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

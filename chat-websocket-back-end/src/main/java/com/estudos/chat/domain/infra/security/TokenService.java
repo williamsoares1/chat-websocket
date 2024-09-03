@@ -1,4 +1,4 @@
-package com.estudos.chat.infra.security;
+package com.estudos.chat.domain.infra.security;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

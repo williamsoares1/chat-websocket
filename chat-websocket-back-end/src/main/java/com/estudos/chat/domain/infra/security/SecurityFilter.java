@@ -1,4 +1,4 @@
-package com.estudos.chat.infra.security;
+package com.estudos.chat.domain.infra.security;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.estudos.chat.domain.repository.UsuarioRepository;
+import com.estudos.chat.repository.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

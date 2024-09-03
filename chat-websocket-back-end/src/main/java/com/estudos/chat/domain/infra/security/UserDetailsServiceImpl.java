@@ -1,4 +1,4 @@
-package com.estudos.chat.infra.security;
+package com.estudos.chat.domain.infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.estudos.chat.domain.repository.UsuarioRepository;
+import com.estudos.chat.repository.UsuarioRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{

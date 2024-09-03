@@ -1,4 +1,4 @@
-package com.estudos.chat.domain.repository;
+package com.estudos.chat.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;

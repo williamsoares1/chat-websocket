@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.estudos.chat.domain.entity.Usuario;
-import com.estudos.chat.domain.repository.UsuarioRepository;
-import com.estudos.chat.infra.security.TokenService;
+import com.estudos.chat.domain.infra.security.TokenService;
+import com.estudos.chat.repository.UsuarioRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
