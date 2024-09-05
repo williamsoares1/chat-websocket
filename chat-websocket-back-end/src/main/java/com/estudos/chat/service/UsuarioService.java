@@ -3,6 +3,7 @@ package com.estudos.chat.service;
 import java.util.Optional;
 
 import org.springframework.http.ProblemDetail;
+import org.springframework.stereotype.Service;
 
 import com.estudos.chat.infra.security.dtos.TokenDTO;
 import com.estudos.chat.infra.security.dtos.TokenRefreshDTO;
@@ -16,5 +17,5 @@ import jakarta.validation.Valid;
 public interface UsuarioService {
     Optional<UsuarioResponseDTO> login(UsuarioLoginRequestDTO dto, HttpServletRequest request, HttpServletResponse response);
     Optional<String> register(@Valid UsuarioCadastroRequestDTO dto);
-    Optional<Void> obterRefreshToken(String refreshToken, HttpServletResponse response);
+    Optional<UsuarioResponseDTO> obterRefreshToken(HttpServletRequest request, HttpServletResponse response);
 }

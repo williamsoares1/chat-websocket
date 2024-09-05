@@ -13,21 +13,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.estudos.chat.infra.security.dtos.TokenDTO;
-import com.estudos.chat.infra.security.dtos.TokenRefreshDTO;
 import com.estudos.chat.infra.security.service.TokenService;
 import com.estudos.chat.model.dtos.request.UsuarioCadastroRequestDTO;
 import com.estudos.chat.model.dtos.request.UsuarioLoginRequestDTO;
 import com.estudos.chat.model.dtos.response.UsuarioResponseDTO;
 import com.estudos.chat.model.entity.Usuario;
-import com.estudos.chat.repository.UsuarioRepository;
+import com.estudos.chat.repository.postgres.UsuarioRepository;
 import com.estudos.chat.service.UsuarioService;
+import com.estudos.chat.util.crypt.AESUtil;
 import com.estudos.chat.util.mapper.MapperS;
-import com.estudos.chat.util.mapper.MapperSImpl;
 import com.fasterxml.jackson.databind.RuntimeJsonMappingException;
 
-import ch.qos.logback.core.subst.Token;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -56,13 +52,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             Usuario usuario = (Usuario) auth.getPrincipal();
 
-            UsuarioResponseDTO responseDTO = UsuarioResponseDTO.builder().email(usuario.getEmail())
-                    .nome(usuario.getNome())
-                    .role(usuario.getRole()).build();
-            
             tokenService.salvarTokenCookie((Usuario) auth.getPrincipal(), response);
 
-            return Optional.of(responseDTO);
+            return Optional.of(response(usuario));
         } catch (AuthenticationException e) {
             return Optional.empty();
         }
@@ -81,21 +73,56 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Void> obterRefreshToken(String refreshToken, HttpServletResponse response) {
-        var subject = tokenService.validateToken(refreshToken);
+    public Optional<UsuarioResponseDTO> obterRefreshToken(HttpServletRequest request, HttpServletResponse response) {
+        var cookies = request.getCookies();
 
-        UserDetails usuario = repository.findByEmail(subject);
+        if (cookies != null) {
+            String token;
 
-        if (usuario == null)
-            throw new RuntimeJsonMappingException("Token invalido");
+            for (var cookie : cookies) {
+                if ("refreshToken".equals(cookie.getName())) {
+                    token = cookie.getValue();
 
-        var auth = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+                    var subject = tokenService.validateToken(token);
 
-        SecurityContextHolder.getContext().setAuthentication(auth);
+                    UserDetails usuario = repository.findByEmail(subject);
 
-        tokenService.salvarTokenCookie((Usuario) auth.getPrincipal(), response);
+                    if (usuario == null)
+                        throw new RuntimeJsonMappingException("Token invalido");
 
-        return Optional.ofNullable(null);
+                    var auth = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+
+                    Usuario usuarioEntity = (Usuario) auth.getPrincipal();
+
+                    tokenService.salvarTokenCookie(usuarioEntity, response);
+
+                    return Optional.of(response(usuarioEntity));
+                }
+            }
+
+        }
+
+        return Optional.empty();
+    }
+
+    public UsuarioResponseDTO response(Usuario usuario) {
+
+        String encryptedId;
+        try {
+            encryptedId = AESUtil.encrypt(usuario.getId());
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao criptografar o ID do usuário", e);
+        }
+
+        UsuarioResponseDTO responseDTO = UsuarioResponseDTO.builder()
+                .id(encryptedId)
+                .email(usuario.getEmail())
+                .nome(usuario.getNome())
+                .role(usuario.getRole()).build();
+
+        return responseDTO;
     }
 
 }

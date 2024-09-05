@@ -34,8 +34,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity<Void> refreshToken(@RequestBody TokenRefreshDTO token, HttpServletResponse response){
-        return ResponseEntity.of(service.obterRefreshToken(token.refreshToken(), response));
+    public ResponseEntity<UsuarioResponseDTO> refreshToken(HttpServletRequest request, HttpServletResponse response){
+        return ResponseEntity.of(service.obterRefreshToken(request, response));
     }
 
     @PostMapping("/register")

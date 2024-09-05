@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.estudos.chat.repository.UsuarioRepository;
+import com.estudos.chat.repository.postgres.UsuarioRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{

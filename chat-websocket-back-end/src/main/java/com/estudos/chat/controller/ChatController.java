@@ -1,19 +1,26 @@
 package com.estudos.chat.controller;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.estudos.chat.model.Message;
+import com.estudos.chat.model.dtos.request.ChatCreateRequestDTO;
+import com.estudos.chat.service.ChatService;
+import com.estudos.chat.service.impl.ChatServiceImpl;
 
-@Controller
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+@RestController
+@RequestMapping("/chat")
 public class ChatController {
-
-    @MessageMapping("/message")
-    @SendTo("/topic/messages")
-    public Message sendMessage(Message message){
-        System.out.println(message);
-        return message;
+    @Autowired
+    private ChatService service;
+    
+    @PostMapping("/create")
+    public String CreateChat(@RequestBody ChatCreateRequestDTO dto) {
+        return service.criarChat(dto);
     }
-
+    
 }
