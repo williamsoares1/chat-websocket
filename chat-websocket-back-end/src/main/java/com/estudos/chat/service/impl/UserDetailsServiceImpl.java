@@ -1,4 +1,4 @@
-package com.estudos.chat.domain.infra.security;
+package com.estudos.chat.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

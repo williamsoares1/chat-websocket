@@ -2,60 +2,19 @@ package com.estudos.chat.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ProblemDetail;
 
-import com.estudos.chat.domain.entity.Usuario;
-import com.estudos.chat.domain.infra.security.TokenService;
-import com.estudos.chat.repository.UsuarioRepository;
-
+import com.estudos.chat.infra.security.dtos.TokenDTO;
+import com.estudos.chat.infra.security.dtos.TokenRefreshDTO;
+import com.estudos.chat.model.dtos.request.UsuarioCadastroRequestDTO;
+import com.estudos.chat.model.dtos.request.UsuarioLoginRequestDTO;
+import com.estudos.chat.model.dtos.response.UsuarioResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
-@Service
-public class UsuarioService {
-
-    @Autowired
-    private UsuarioRepository repository;
-
-    @Autowired
-    private AuthenticationManager manager;
-
-    @Autowired
-    private TokenService tokenService;
-
-    public Optional<Usuario> login(Usuario dto, HttpServletRequest request){
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
-
-        var auth = this.manager.authenticate(usernamePassword);
-
-        System.out.println("aa");
-        
-        var token = tokenService.generateToken((Usuario) auth.getPrincipal());
-
-        System.out.println("aa");
-
-        Usuario usuario = (Usuario) auth.getPrincipal();
-
-        System.out.println("aa");
-
-        System.out.println(token);
-
-        return Optional.of(usuario);
-    }
-
-    public Optional<Usuario> register(@Valid Usuario dto) {
-        String passaword = dto.getSenha();
-        String encryptedPassword = new BCryptPasswordEncoder().encode(passaword);
-
-        dto.setSenha(encryptedPassword);
-
-        repository.save(dto);
-
-        return Optional.of(dto);
-    }
-
+public interface UsuarioService {
+    Optional<UsuarioResponseDTO> login(UsuarioLoginRequestDTO dto, HttpServletRequest request, HttpServletResponse response);
+    Optional<String> register(@Valid UsuarioCadastroRequestDTO dto);
+    Optional<Void> obterRefreshToken(String refreshToken, HttpServletResponse response);
 }

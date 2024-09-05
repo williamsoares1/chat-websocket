@@ -1,4 +1,4 @@
-package com.estudos.chat.domain.entity;
+package com.estudos.chat.model.entity;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.estudos.chat.domain.infra.security.USERROLE;
+import com.estudos.chat.model.enums.USERROLE;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

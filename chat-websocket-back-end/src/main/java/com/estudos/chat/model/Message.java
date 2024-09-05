@@ -1,4 +1,4 @@
-package com.estudos.chat.domain.model;
+package com.estudos.chat.model;
 
 import java.time.LocalDate;
 
