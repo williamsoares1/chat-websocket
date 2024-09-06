@@ -1,4 +1,4 @@
-package com.estudos.chat.model.entity;
+package com.estudos.chat.domain.dtos.entity;
 
 import java.time.LocalDate;
 import java.util.Set;

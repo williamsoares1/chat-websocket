@@ -1,6 +1,6 @@
-package com.estudos.chat.model.dtos.response;
+package com.estudos.chat.domain.dtos.response;
 
-import com.estudos.chat.model.enums.USERROLE;
+import com.estudos.chat.domain.enums.USERROLE;
 
 import lombok.Builder;
 

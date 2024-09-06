@@ -1,10 +1,10 @@
-package com.estudos.chat.repository.postgres;
+package com.estudos.chat.repository.postgresql;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
-import com.estudos.chat.model.entity.Usuario;
+import com.estudos.chat.domain.dtos.entity.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{

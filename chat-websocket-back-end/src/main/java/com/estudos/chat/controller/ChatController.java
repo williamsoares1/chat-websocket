@@ -3,7 +3,7 @@ package com.estudos.chat.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.estudos.chat.model.dtos.request.ChatCreateRequestDTO;
+import com.estudos.chat.domain.dtos.request.ChatCreateRequestDTO;
 import com.estudos.chat.service.ChatService;
 import com.estudos.chat.service.impl.ChatServiceImpl;
 

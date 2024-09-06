@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.core.RepositoryCreationException;
 import org.springframework.stereotype.Service;
 
-import com.estudos.chat.model.dtos.request.ChatCreateRequestDTO;
-import com.estudos.chat.model.entity.Chat;
-import com.estudos.chat.model.entity.Usuario;
-import com.estudos.chat.repository.postgres.ChatRepository;
-import com.estudos.chat.repository.postgres.UsuarioRepository;
+import com.estudos.chat.domain.dtos.entity.Chat;
+import com.estudos.chat.domain.dtos.entity.Usuario;
+import com.estudos.chat.domain.dtos.request.ChatCreateRequestDTO;
+import com.estudos.chat.repository.postgresql.ChatRepository;
+import com.estudos.chat.repository.postgresql.UsuarioRepository;
 import com.estudos.chat.service.ChatService;
 import com.estudos.chat.util.crypt.AESUtil;
 import com.estudos.chat.util.mapper.MapperS;

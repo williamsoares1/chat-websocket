@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
-    private String user;
+    private Long userId;
     private String message;
     private LocalDate createdAt;
 }

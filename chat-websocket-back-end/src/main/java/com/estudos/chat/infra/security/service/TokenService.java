@@ -12,8 +12,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.estudos.chat.domain.dtos.entity.Usuario;
 import com.estudos.chat.infra.security.dtos.TokenDTO;
-import com.estudos.chat.model.entity.Usuario;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;

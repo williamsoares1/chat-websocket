@@ -13,12 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.estudos.chat.domain.dtos.entity.Usuario;
+import com.estudos.chat.domain.dtos.request.UsuarioLoginRequestDTO;
+import com.estudos.chat.domain.dtos.request.UsuarioRegisterRequestDTO;
+import com.estudos.chat.domain.dtos.response.UsuarioResponseDTO;
 import com.estudos.chat.infra.security.service.TokenService;
-import com.estudos.chat.model.dtos.request.UsuarioCadastroRequestDTO;
-import com.estudos.chat.model.dtos.request.UsuarioLoginRequestDTO;
-import com.estudos.chat.model.dtos.response.UsuarioResponseDTO;
-import com.estudos.chat.model.entity.Usuario;
-import com.estudos.chat.repository.postgres.UsuarioRepository;
+import com.estudos.chat.repository.postgresql.UsuarioRepository;
 import com.estudos.chat.service.UsuarioService;
 import com.estudos.chat.util.crypt.AESUtil;
 import com.estudos.chat.util.mapper.MapperS;
@@ -61,7 +61,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<String> register(@Valid UsuarioCadastroRequestDTO dto) {
+    public Optional<String> register(@Valid UsuarioRegisterRequestDTO dto) {
         String passaword = dto.senha();
         String encryptedPassword = new BCryptPasswordEncoder().encode(passaword);
 

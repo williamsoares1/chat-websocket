@@ -1,4 +1,4 @@
-package com.estudos.chat.model.enums;
+package com.estudos.chat.domain.enums;
 
 public enum USERROLE {
     USUARIO, ADM;

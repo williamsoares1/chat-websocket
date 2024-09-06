@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.estudos.chat.infra.security.service.TokenService;
-import com.estudos.chat.repository.postgres.UsuarioRepository;
+import com.estudos.chat.repository.postgresql.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

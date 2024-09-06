@@ -1,4 +1,4 @@
-package com.estudos.chat.model.dtos.request;
+package com.estudos.chat.domain.dtos.request;
 
 import lombok.Builder;
 
